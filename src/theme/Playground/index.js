@@ -1,13 +1,13 @@
-import React from 'react';
-import clsx from 'clsx';
-import useIsBrowser from '@docusaurus/useIsBrowser';
-import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
-import Translate from '@docusaurus/Translate';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import BrowserOnly from '@docusaurus/BrowserOnly';
-import {usePrismTheme} from '@docusaurus/theme-common';
-import styles from './styles.module.css';
-function Header({children}) {
+import React from "react";
+import clsx from "clsx";
+import useIsBrowser from "@docusaurus/useIsBrowser";
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
+import Translate from "@docusaurus/Translate";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import BrowserOnly from "@docusaurus/BrowserOnly";
+import { usePrismTheme } from "@docusaurus/theme-common";
+import styles from "./styles.module.css";
+function Header({ children }) {
   return <div className={clsx(styles.playgroundHeader)}>{children}</div>;
 }
 function LivePreviewLoader() {
@@ -21,7 +21,8 @@ function ResultWithHeader() {
       <Header>
         <Translate
           id="theme.Playground.result"
-          description="The result label of the live codeblocks">
+          description="The result label of the live codeblocks"
+        >
           Result
         </Translate>
       </Header>
@@ -56,7 +57,8 @@ function EditorWithHeader() {
       <Header>
         <Translate
           id="theme.Playground.liveEditor"
-          description="The live editor label of the live codeblocks">
+          description="The live editor label of the live codeblocks"
+        >
           Live Editor
         </Translate>
       </Header>
@@ -64,25 +66,26 @@ function EditorWithHeader() {
     </>
   );
 }
-export default function Playground({children, transformCode, ...props}) {
+export default function Playground({ children, transformCode, ...props }) {
   const {
-    siteConfig: {themeConfig},
+    siteConfig: { themeConfig },
   } = useDocusaurusContext();
   const {
-    liveCodeBlock: {playgroundPosition},
+    liveCodeBlock: { playgroundPosition },
   } = themeConfig;
   const prismTheme = usePrismTheme();
-  const noInline = props.metastring?.includes('noInline') ?? false;
+  const noInline = props.metastring?.includes("noInline") ?? false;
   return (
     <div className={styles.playgroundContainer}>
       {/* @ts-expect-error: type incompatibility with refs */}
       <LiveProvider
-        code={children.replace(/\n$/, '')}
+        code={children.replace(/\n$/, "")}
         noInline={noInline}
         transformCode={transformCode ?? ((code) => `${code};`)}
         theme={prismTheme}
-        {...props}>
-        {playgroundPosition === 'top' ? (
+        {...props}
+      >
+        {playgroundPosition === "top" ? (
           <>
             <ResultWithHeader />
             <EditorWithHeader />

@@ -58,6 +58,7 @@ const config = {
     ],
   ],
 
+  // TODO: themes is used in the docs
   plugins: ["@docusaurus/theme-live-codeblock"],
 
   themeConfig:

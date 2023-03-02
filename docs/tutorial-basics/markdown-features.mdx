@@ -4,11 +4,39 @@ sidebar_position: 4
 
 # Markdown Features
 
-Docusaurus supports **[Markdown](https://daringfireball.net/projects/markdown/syntax)** and a few **additional features**.
+Docusaurus supports
+**[Markdown](https://daringfireball.net/projects/markdown/syntax)** and a few
+**additional features**.
+
+## Testing Code blocks
+
+```jsx live
+function Clock(props) {
+  const [date, setDate] = useState(new Date());
+  useEffect(() => {
+    const timerID = setInterval(() => tick(), 1000);
+
+    return function cleanup() {
+      clearInterval(timerID);
+    };
+  });
+
+  function tick() {
+    setDate(new Date());
+  }
+
+  return (
+    <div>
+      <h2>It is {date.toLocaleTimeString()}.</h2>
+    </div>
+  );
+}
+```
 
 ## Front Matter
 
-Markdown documents have metadata at the top called [Front Matter](https://jekyllrb.com/docs/front-matter/):
+Markdown documents have metadata at the top called
+[Front Matter](https://jekyllrb.com/docs/front-matter/):
 
 ```text title="my-doc.md"
 // highlight-start
@@ -43,7 +71,8 @@ Let's see how to [Create a page](./create-a-page.md).
 
 Regular Markdown images are supported.
 
-You can use absolute paths to reference images in the static directory (`static/img/docusaurus.png`):
+You can use absolute paths to reference images in the static directory
+(`static/img/docusaurus.png`):
 
 ```md
 ![Docusaurus logo](/img/docusaurus.png)
@@ -51,7 +80,8 @@ You can use absolute paths to reference images in the static directory (`static/
 
 ![Docusaurus logo](/img/docusaurus.png)
 
-You can reference images relative to the current file as well. This is particularly useful to colocate images close to the Markdown files using them:
+You can reference images relative to the current file as well. This is
+particularly useful to colocate images close to the Markdown files using them:
 
 ```md
 ![Docusaurus logo](./img/docusaurus.png)
@@ -105,7 +135,8 @@ This action is dangerous
 
 ## MDX and React Components
 
-[MDX](https://mdxjs.com/) can make your documentation more **interactive** and allows using any **React components inside Markdown**:
+[MDX](https://mdxjs.com/) can make your documentation more **interactive** and
+allows using any **React components inside Markdown**:
 
 ```jsx
 export const Highlight = ({children, color}) => (
@@ -129,18 +160,19 @@ This is <Highlight color="#25c2a0">Docusaurus green</Highlight> !
 This is <Highlight color="#1877F2">Facebook blue</Highlight> !
 ```
 
-export const Highlight = ({children, color}) => (
+export const Highlight = ({ children, color }) => (
   <span
     style={{
       backgroundColor: color,
-      borderRadius: '20px',
-      color: '#fff',
-      padding: '10px',
-      cursor: 'pointer',
+      borderRadius: "20px",
+      color: "#fff",
+      padding: "10px",
+      cursor: "pointer",
     }}
     onClick={() => {
       alert(`You clicked the color ${color} with label ${children}`);
-    }}>
+    }}
+  >
     {children}
   </span>
 );

@@ -8,29 +8,12 @@ Docusaurus supports
 **[Markdown](https://daringfireball.net/projects/markdown/syntax)** and a few
 **additional features**.
 
-## Testing Code blocks
+## Testing SDS components
 
 ```jsx live
-function Clock(props) {
-  const [date, setDate] = useState(new Date());
-  useEffect(() => {
-    const timerID = setInterval(() => tick(), 1000);
-
-    return function cleanup() {
-      clearInterval(timerID);
-    };
-  });
-
-  function tick() {
-    setDate(new Date());
-  }
-
-  return (
-    <div>
-      <h2>It is {date.toLocaleTimeString()}.</h2>
-    </div>
-  );
-}
+<Button size="md" variant="primary">
+  SDS Button test
+</Button>
 ```
 
 ## Testing tabs

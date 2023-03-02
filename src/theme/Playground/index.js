@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
@@ -7,6 +7,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 import { usePrismTheme } from "@docusaurus/theme-common";
 import styles from "./styles.module.css";
+
 function Header({ children }) {
   return <div className={clsx(styles.playgroundHeader)}>{children}</div>;
 }
@@ -67,6 +68,16 @@ function EditorWithHeader() {
   );
 }
 export default function Playground({ children, transformCode, ...props }) {
+  const [sds, setSds] = useState({});
+
+  // Importing SDS here because we need it async for server-side-rendering
+  useEffect(() => {
+    const initSds = async () => {
+      setSds(await import("@stellar/design-system"));
+    };
+    initSds();
+  }, []);
+
   const {
     siteConfig: { themeConfig },
   } = useDocusaurusContext();
@@ -75,6 +86,12 @@ export default function Playground({ children, transformCode, ...props }) {
   } = themeConfig;
   const prismTheme = usePrismTheme();
   const noInline = props.metastring?.includes("noInline") ?? false;
+  const scope = { ...props.scope, ...sds };
+
+  // TODO: handle light/dark theme change
+  // TODO: container to show multiple
+  // TODO: toggle live editor, show only result by default
+
   return (
     <div className={styles.playgroundContainer}>
       {/* @ts-expect-error: type incompatibility with refs */}
@@ -84,6 +101,7 @@ export default function Playground({ children, transformCode, ...props }) {
         transformCode={transformCode ?? ((code) => `${code};`)}
         theme={prismTheme}
         {...props}
+        scope={scope}
       >
         {playgroundPosition === "top" ? (
           <>

@@ -4,6 +4,12 @@
  * work well for content-centric websites.
  */
 
+/* Stellar Design System fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight&family=Inter:wght@400;500;600&family=Roboto+Mono&display=swap");
+
+/* Stellar Design System styles */
+@import "@stellar/design-system/build/styles.min.css";
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #2e8555;
@@ -18,7 +24,7 @@
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
+[data-theme="dark"] {
   --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: #21af90;
   --ifm-color-primary-darker: #1fa588;

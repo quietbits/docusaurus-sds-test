@@ -34,3 +34,11 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* TODO: handle this in SDS */
+/* SDS overrides */
+#__docusaurus .sds-theme-light,
+#__docusaurus .sds-theme-dark {
+  min-height: auto;
+  min-width: auto;
+}

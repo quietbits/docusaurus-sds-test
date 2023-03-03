@@ -3,9 +3,9 @@ import clsx from "clsx";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import Translate from "@docusaurus/Translate";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 import { usePrismTheme } from "@docusaurus/theme-common";
+import { PreviewBlock } from "@site/src/components/PreviewBlock";
 import styles from "./styles.module.css";
 
 function Header({ children }) {
@@ -19,25 +19,17 @@ function LivePreviewLoader() {
 function ResultWithHeader() {
   return (
     <>
-      <Header>
-        <Translate
-          id="theme.Playground.result"
-          description="The result label of the live codeblocks"
-        >
-          Result
-        </Translate>
-      </Header>
       {/* https://github.com/facebook/docusaurus/issues/5747 */}
-      <div className={styles.playgroundPreview}>
-        <BrowserOnly fallback={<LivePreviewLoader />}>
-          {() => (
-            <>
-              <LivePreview />
-              <LiveError />
-            </>
-          )}
-        </BrowserOnly>
-      </div>
+      {/* <div className={styles.playgroundPreview}> */}
+      <BrowserOnly fallback={<LivePreviewLoader />}>
+        {() => (
+          <>
+            <LivePreview />
+            <LiveError />
+          </>
+        )}
+      </BrowserOnly>
+      {/* </div> */}
     </>
   );
 }
@@ -53,17 +45,14 @@ function ThemedLiveEditor() {
   );
 }
 function EditorWithHeader() {
+  const [isEditorVisible, setIsEditorVisible] = useState(false);
+
   return (
     <>
-      <Header>
-        <Translate
-          id="theme.Playground.liveEditor"
-          description="The live editor label of the live codeblocks"
-        >
-          Live Editor
-        </Translate>
-      </Header>
-      <ThemedLiveEditor />
+      <div onClick={() => setIsEditorVisible(!isEditorVisible)}>
+        <Header>{`${isEditorVisible ? "Hide" : "Show"} Live Editor`}</Header>
+      </div>
+      {isEditorVisible ? <ThemedLiveEditor /> : null}
     </>
   );
 }
@@ -78,19 +67,9 @@ export default function Playground({ children, transformCode, ...props }) {
     initSds();
   }, []);
 
-  const {
-    siteConfig: { themeConfig },
-  } = useDocusaurusContext();
-  const {
-    liveCodeBlock: { playgroundPosition },
-  } = themeConfig;
   const prismTheme = usePrismTheme();
   const noInline = props.metastring?.includes("noInline") ?? false;
-  const scope = { ...props.scope, ...sds };
-
-  // TODO: handle light/dark theme change
-  // TODO: container to show multiple
-  // TODO: toggle live editor, show only result by default
+  const scope = { ...props.scope, PreviewBlock, ...sds };
 
   return (
     <div className={styles.playgroundContainer}>
@@ -103,17 +82,8 @@ export default function Playground({ children, transformCode, ...props }) {
         {...props}
         scope={scope}
       >
-        {playgroundPosition === "top" ? (
-          <>
-            <ResultWithHeader />
-            <EditorWithHeader />
-          </>
-        ) : (
-          <>
-            <EditorWithHeader />
-            <ResultWithHeader />
-          </>
-        )}
+        <ResultWithHeader />
+        <EditorWithHeader />
       </LiveProvider>
     </div>
   );

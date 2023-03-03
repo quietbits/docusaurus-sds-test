@@ -10,10 +10,58 @@ Docusaurus supports
 
 ## Testing SDS components
 
-```jsx live
-<Button size="md" variant="primary">
-  SDS Button test
-</Button>
+```tsx live
+<PreviewBlock>
+  {/* Primary */}
+  <Button variant="primary" size="md">
+    Label
+  </Button>
+
+  {/* Icon on the left */}
+  <Button variant="primary" size="md" icon={<Icon.Check />} iconPosition="left">
+    Label
+  </Button>
+
+  {/* Icon on the right */}
+  <Button
+    variant="primary"
+    size="md"
+    icon={<Icon.Check />}
+    iconPosition="right"
+  >
+    Label
+  </Button>
+
+  {/* Disabled */}
+  <Button variant="primary" size="md" disabled>
+    Label
+  </Button>
+
+  {/* Loading */}
+  <Button variant="primary" size="md" isLoading>
+    Label
+  </Button>
+
+  {/* Uppercase label */}
+  <Button variant="primary" size="md" isUppercase>
+    Label
+  </Button>
+
+  {/* Full width */}
+  <Button variant="primary" size="md" isFullWidth>
+    Label
+  </Button>
+
+  {/* Extra padding */}
+  <Button variant="primary" size="md" isExtraPadding>
+    Label
+  </Button>
+
+  {/* Pill-shaped */}
+  <Button variant="primary" size="md" isPill>
+    Label
+  </Button>
+</PreviewBlock>
 ```
 
 ## Testing tabs

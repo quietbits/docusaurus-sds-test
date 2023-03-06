@@ -1896,10 +1896,10 @@
     p-map "^4.0.0"
     webpack-sources "^3.2.2"
 
-"@stellar/design-system@^1.0.0-beta.1":
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@stellar/design-system/-/design-system-1.0.0-beta.1.tgz#94046fb681eccef6997a9781bb34c0a393ae17d0"
-  integrity sha512-ok9f4Tw+GCVze24AIBXk0DwjosAQmO+NnL1MN0SR1TqpaU9LP4KxUiWrtUKhLOfdsSsG56sL0cK1cb/IuD6+hQ==
+"@stellar/design-system@^1.0.0-beta.2":
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@stellar/design-system/-/design-system-1.0.0-beta.2.tgz#95c80aa67c4a280cbbf1da1920db0e5ae25877c7"
+  integrity sha512-mg+1JldAstmPv+SbPw1Q3YTWBoy/H7+kPy232fJLh5MATYnFdzDlHlwDRU2bzaZDS1VXUhF6iaT5KxzBJsrtlQ==
   dependencies:
     "@popperjs/core" "^2.11.6"
     bignumber.js "^9.1.1"
